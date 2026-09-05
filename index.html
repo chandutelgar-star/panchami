@@ -381,9 +381,11 @@ button:hover{
             Whatever your answer is, I'll respect it.
         </p>
 
-        <button class="yes" onclick="yes()">YES ❤️</button>
+        <button class="yes" onclick="sendResponse('YES')">
+            YES ❤️
+        </button>
 
-        <button class="take-time" onclick="go(8)">
+        <button class="take-time" onclick="sendResponse('TAKE YOUR TIME')">
             TAKE YOUR TIME
         </button>
     </section>
@@ -469,7 +471,10 @@ button:hover{
 
 <script>
 
+/* PAGE NAVIGATION */
+
 function go(n){
+
     document.querySelectorAll(".page").forEach(p=>{
         p.classList.remove("show");
     });
@@ -478,30 +483,68 @@ function go(n){
 }
 
 
-function yes(){
-    go(7);
+/* SEND RESPONSE TO FORMSPREE */
 
-    for(let i=0;i<35;i++){
+async function sendResponse(response){
 
-        const heart=document.createElement("div");
+    const data = new FormData();
 
-        heart.className="fh";
-        heart.innerHTML="❤️";
+    data.append("response", response);
+    data.append("subject", "Panchami Website Response");
 
-        heart.style.left=Math.random()*100+"vw";
-        heart.style.fontSize=(15+Math.random()*30)+"px";
-        heart.style.animationDuration=(3+Math.random()*3)+"s";
+    try{
 
-        document.body.appendChild(heart);
+        await fetch(
+            "https://formspree.io/f/xjyvonpw",
+            {
+                method:"POST",
+                body:data,
+                headers:{
+                    "Accept":"application/json"
+                }
+            }
+        );
 
-        setTimeout(()=>{
-            heart.remove();
-        },6000);
+    }catch(error){
+
+        console.log("Response could not be sent:",error);
+
+    }
+
+
+    /* Continue the website normally */
+
+    if(response === "YES"){
+
+        go(7);
+
+        for(let i=0;i<35;i++){
+
+            const heart=document.createElement("div");
+
+            heart.className="fh";
+            heart.innerHTML="❤️";
+
+            heart.style.left=Math.random()*100+"vw";
+            heart.style.fontSize=(15+Math.random()*30)+"px";
+            heart.style.animationDuration=(3+Math.random()*3)+"s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(()=>{
+                heart.remove();
+            },6000);
+        }
+
+    }else{
+
+        go(8);
+
     }
 }
 
 
-/* Flying white particles */
+/* FLYING WHITE PARTICLES */
 
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
@@ -608,4 +651,4 @@ animateParticles();
 </script>
 
 </body>
-</html>
+    </html>
