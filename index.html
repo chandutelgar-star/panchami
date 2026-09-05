@@ -6,9 +6,7 @@
 <title>For Panchami</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 html,body{
     margin:0;
@@ -26,7 +24,6 @@ body{
     overflow-x:hidden;
 }
 
-/* WHITE FLYING PARTICLES */
 canvas{
     position:fixed;
     inset:0;
@@ -43,12 +40,13 @@ canvas{
     top:50%;
     transform:translate(-50%,-50%);
     border-radius:50%;
-    background:radial-gradient(
-        circle,
-        #ff26742b 0%,
-        #ff267410 38%,
-        transparent 72%
-    );
+    background:
+        radial-gradient(
+            circle,
+            #ff26742b 0%,
+            #ff267410 38%,
+            transparent 72%
+        );
     filter:blur(25px);
     z-index:-4;
     pointer-events:none;
@@ -98,12 +96,7 @@ h1{
     margin:0 0 20px;
     font-size:clamp(48px,11vw,82px);
     line-height:.95;
-    background:linear-gradient(
-        90deg,
-        #fff,
-        #ff4f91,
-        #fff
-    );
+    background:linear-gradient(90deg,#fff,#ff4f91,#fff);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -140,12 +133,8 @@ p{
 }
 
 @keyframes heartbeat{
-    0%,100%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.14);
-    }
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.14);}
 }
 
 button{
@@ -166,40 +155,30 @@ button:hover{
     background:#ffffff17;
 }
 
-/* FULLY HIGHLIGHTED YES */
-
 .yes{
     position:relative;
-
-    background:linear-gradient(
-        135deg,
-        #ff1268,
-        #ff4f91,
-        #ff1268
-    ) !important;
-
-    border:2px solid #ff8fbb !important;
-
-    color:#fff !important;
-
+    background:
+        linear-gradient(
+            135deg,
+            #ff1268,
+            #ff4f91,
+            #ff1268
+        )!important;
+    border:2px solid #ff8fbb!important;
+    color:#fff!important;
     font-weight:900;
-
     padding:16px 32px;
-
     transform:scale(1.08);
-
     box-shadow:
         0 0 12px #ff2674,
         0 0 30px #ff2674,
         0 0 60px #ff2674,
         0 0 100px #ff267455;
-
     animation:pulseYes 1.5s ease-in-out infinite;
 }
 
 .yes:hover{
     transform:scale(1.16);
-
     box-shadow:
         0 0 18px #ff2674,
         0 0 40px #ff2674,
@@ -247,8 +226,6 @@ button:hover{
     transform:scale(1.05);
 }
 
-/* FLOATING HEARTS AFTER YES */
-
 .fh{
     position:fixed;
     bottom:-40px;
@@ -269,18 +246,7 @@ button:hover{
     }
 }
 
-#toast{
-    position:fixed;
-    bottom:16px;
-    left:50%;
-    transform:translateX(-50%);
-    color:#ffffff55;
-    font-size:11px;
-    letter-spacing:1px;
-}
-
 @media(max-width:500px){
-
     .card{
         min-height:590px;
         padding:35px 12px;
@@ -304,448 +270,274 @@ button:hover{
 <body>
 
 <canvas id="stars"></canvas>
-
 <div class="glow"></div>
 
 <div class="card">
 
-<!-- PAGE 1 -->
+    <!-- PAGE 1 -->
+    <section class="page show" id="p1">
+        <div class="kicker">A little something for you</div>
 
-<section class="page show" id="p1">
+        <h1>Panchami</h1>
 
-    <div class="kicker">
-        A little something for you
-    </div>
+        <p>
+            There is something I've wanted to tell you.
+            So… please stay till the end. 👀
+        </p>
 
-    <h1>Panchami</h1>
-
-    <p>
-        There is something I've wanted to tell you.
-        So… please stay till the end. 👀
-    </p>
-
-    <button onclick="go(2)">
-        I promise ✨
-    </button>
-
-</section>
+        <button onclick="go(2)">I promise ✨</button>
+    </section>
 
 
-<!-- PAGE 2 -->
+    <!-- PAGE 2 -->
+    <section class="page" id="p2">
+        <div class="heart">❤️</div>
 
-<section class="page" id="p2">
+        <div class="kicker">Okay… here goes</div>
 
-    <div class="heart">
-        ❤️
-    </div>
+        <h2>I've been thinking.</h2>
 
-    <div class="kicker">
-        Okay… here goes
-    </div>
+        <p>
+            Sometimes people slowly become important to us
+            without us even realizing when it happened.
+        </p>
 
-    <h2>
-        I've been thinking.
-    </h2>
+        <p>
+            And somehow, you became one of those people for me.
+        </p>
 
-    <p>
-        Some people slowly become a really important
-        part of your day without you even noticing.
-    </p>
-
-    <button onclick="go(3)">
-        Continue →
-    </button>
-
-</section>
+        <button onclick="go(3)">Continue</button>
+    </section>
 
 
-<!-- PAGE 3 -->
+    <!-- PAGE 3 -->
+    <section class="page" id="p3">
+        <div class="kicker">The honest part</div>
 
-<section class="page" id="p3">
+        <h2>You became special.</h2>
 
-    <div class="kicker">
-        The honest part
-    </div>
+        <p>
+            Talking to you became something I genuinely
+            look forward to.
+        </p>
 
-    <h2>
-        You became special.
-    </h2>
+        <p>
+            Even the smallest conversations somehow
+            mean more to me than they probably should.
+        </p>
 
-    <p>
-        Talking to you became something I genuinely
-        look forward to.
-    </p>
-
-    <p>
-        Somewhere along the way,
-        you became really special to me.
-    </p>
-
-    <button onclick="go(4)">
-        One last thing…
-    </button>
-
-</section>
+        <button onclick="go(4)">One last thing…</button>
+    </section>
 
 
-<!-- PAGE 4 -->
+    <!-- PAGE 4 -->
+    <section class="page" id="p4">
+        <div class="kicker">Something I've never said</div>
 
-<section class="page" id="p4">
+        <h2>You're my first crush.</h2>
 
-    <div class="kicker">
-        Something I've never said
-    </div>
+        <p>
+            I've never really done this before.
+            You're the first person I've genuinely had a crush on,
+            and honestly, I didn't even know how to say it.
+        </p>
 
-    <h2>
-        You're my first crush.
-    </h2>
+        <p>
+            Maybe that's why I overthought this so much.
+            But I wanted to be honest with you instead of
+            keeping it to myself.
+        </p>
 
-    <p>
-        I've never really done this before.
-    </p>
-
-    <p>
-        You're the first person I've genuinely had a crush on,
-        and honestly, I didn't even know how to say it.
-    </p>
-
-    <p>
-        Maybe that's why I overthought this so much.
-        But I wanted to be honest with you instead of
-        keeping it to myself.
-    </p>
-
-    <button onclick="go(5)">
-        Keep going →
-    </button>
-
-</section>
+        <button onclick="go(5)">Keep going →</button>
+    </section>
 
 
-<!-- PAGE 5 -->
+    <!-- PAGE 5 -->
+    <section class="page" id="p5">
+        <div class="kicker">So yeah…</div>
 
-<section class="page" id="p5">
+        <h2>I really, really like you.</h2>
 
-    <div class="kicker">
-        So yeah…
-    </div>
+        <p>
+            Panchami, you're my first crush.
+        </p>
 
-    <h2 class="big">
-        I really, really like you.
-    </h2>
+        <p>
+            I just wanted you to know how I honestly feel.
+        </p>
 
-    <p>
-        Panchami, you're my
-        <span class="highlight">
-            first crush
-        </span>.
-    </p>
-
-    <p>
-        And I just wanted you to know
-        how I honestly feel.
-    </p>
-
-    <button onclick="go(6)">
-        The question 👀
-    </button>
-
-</section>
+        <button onclick="go(6)">The question 👀</button>
+    </section>
 
 
-<!-- PAGE 6 -->
+    <!-- PAGE 6 -->
+    <section class="page" id="p6">
+        <div class="kicker">Panchami…</div>
 
-<section class="page" id="p6">
+        <h2>Would you like to be in a relationship with me?</h2>
 
-    <div class="kicker">
-        Panchami…
-    </div>
+        <p>
+            No pressure. Take your time.
+            Whatever your answer is, I'll respect it.
+        </p>
 
-    <h2 class="big">
-        Would you like to be<br>
-        in a relationship with me?
-    </h2>
-
-    <p>
-        No pressure. Take your time.
-        Whatever your answer is, I'll respect it.
-    </p>
-
-    <div>
-
-        <button class="yes" onclick="yes()">
-            YES ❤️
-        </button>
+        <button class="yes" onclick="yes()">YES ❤️</button>
 
         <button class="take-time" onclick="go(8)">
             TAKE YOUR TIME
         </button>
-
-    </div>
-
-</section>
+    </section>
 
 
-<!-- PAGE 7 : YES -->
+    <!-- PAGE 7 -->
+    <section class="page" id="p7">
+        <div class="heart">❤️</div>
 
-<section class="page" id="p7">
+        <div class="kicker">You said yes</div>
 
-    <div class="heart">
-        ❤️
-    </div>
+        <h2>Thank you.</h2>
 
-    <div class="kicker">
-        You said yes
-    </div>
+        <p>
+            I'm really glad I was brave enough
+            to tell you how I feel. 🥹❤️
+        </p>
 
-    <h2>
-        Thank you.
-    </h2>
-
-    <p>
-        I'm really glad I was brave enough
-        to tell you how I feel. 🥹❤️
-    </p>
-
-    <button onclick="go(9)">
-        There's more…
-    </button>
-
-</section>
+        <button onclick="go(9)">There's more…</button>
+    </section>
 
 
-<!-- PAGE 8 : TAKE YOUR TIME -->
+    <!-- PAGE 8 -->
+    <section class="page" id="p8">
+        <div class="heart">❤️</div>
 
-<section class="page" id="p8">
+        <div class="kicker">No rush</div>
 
-    <div class="heart">
-        ❤️
-    </div>
+        <h2>Take your time.</h2>
 
-    <div class="kicker">
-        No rush
-    </div>
+        <p>
+            You don't have to answer right away.
+        </p>
 
-    <h2>
-        Take your time.
-    </h2>
+        <p>
+            Think about it, take your time, and whenever
+            you're ready, I'll respect whatever you decide.
+        </p>
 
-    <p>
-        You don't have to answer right away.
-    </p>
-
-    <p>
-        Think about it, take your time,
-        and whenever you're ready,
-        I'll respect whatever you decide.
-    </p>
-
-    <button onclick="go(9)">
-        Continue →
-    </button>
-
-</section>
+        <button onclick="go(9)">Continue</button>
+    </section>
 
 
-<!-- PAGE 9 -->
+    <!-- PAGE 9 -->
+    <section class="page" id="p9">
+        <div class="kicker">Before you go</div>
 
-<section class="page" id="p9">
+        <h2>Just remember…</h2>
 
-    <div class="kicker">
-        Before you go
-    </div>
+        <p>
+            Whatever happens, I'm glad I was honest
+            about how I feel.
+        </p>
 
-    <h2>
-        Just remember…
-    </h2>
+        <p>
+            You mean a lot to me, and that's something
+            I wanted you to know.
+        </p>
 
-    <p>
-        I meant every word on this little website.
-    </p>
-
-    <p>
-        Whatever you decide,
-        I'll respect your answer.
-    </p>
-
-    <button onclick="go(10)">
-        The ending →
-    </button>
-
-</section>
+        <button onclick="go(10)">The ending</button>
+    </section>
 
 
-<!-- PAGE 10 -->
+    <!-- PAGE 10 -->
+    <section class="page" id="p10">
+        <div class="heart">❤️</div>
 
-<section class="page" id="p10">
+        <div class="kicker">That's all I wanted to say</div>
 
-    <div class="heart">
-        ❤️
-    </div>
+        <h2>Thank you for reading.</h2>
 
-    <div class="kicker">
-        That's all I wanted to say
-    </div>
+        <p>
+            No matter what, I'm glad I told you.
+        </p>
 
-    <h2>
-        Thank you for reading.
-    </h2>
+        <p class="back-link" onclick="history.back()">
+            THANK U
+        </p>
+    </section>
 
-    <p>
-        No matter what,
-        I'm glad I told you.
-    </p>
-
-    <p
-        class="back-link"
-        onclick="history.back()"
-    >
-        THANK U
-    </p>
-
-</section>
-
-</div>
-
-
-<div id="toast">
-    Made with courage ❤️
 </div>
 
 
 <script>
 
-/* PAGE NAVIGATION */
-
 function go(n){
-
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
-            page.classList.remove("show");
-        });
-
-    const next =
-        document.getElementById("p" + n);
-
-    if(next){
-        next.classList.add("show");
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
+    document.querySelectorAll(".page").forEach(p=>{
+        p.classList.remove("show");
     });
+
+    document.getElementById("p"+n).classList.add("show");
 }
 
-
-/* YES */
 
 function yes(){
-
     go(7);
 
-    const hearts = [
-        "❤️",
-        "💖",
-        "💗",
-        "✨",
-        "💕"
-    ];
+    for(let i=0;i<35;i++){
 
-    for(let i=0;i<70;i++){
+        const heart=document.createElement("div");
 
-        setTimeout(() => {
+        heart.className="fh";
+        heart.innerHTML="❤️";
 
-            const heart =
-                document.createElement("div");
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(15+Math.random()*30)+"px";
+        heart.style.animationDuration=(3+Math.random()*3)+"s";
 
-            heart.className="fh";
+        document.body.appendChild(heart);
 
-            heart.innerText =
-                hearts[
-                    Math.floor(
-                        Math.random()*hearts.length
-                    )
-                ];
-
-            heart.style.left =
-                Math.random()*100+"vw";
-
-            heart.style.fontSize =
-                (18+Math.random()*25)+"px";
-
-            heart.style.animationDuration =
-                (3+Math.random()*3)+"s";
-
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            },6000);
-
-        },i*70);
+        setTimeout(()=>{
+            heart.remove();
+        },6000);
     }
 }
 
 
-/* WHITE FLYING PARTICLES */
+/* Flying white particles */
 
-const canvas =
-    document.getElementById("stars");
-
-const ctx =
-    canvas.getContext("2d");
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
 
 let particles=[];
 
 function resize(){
 
-    canvas.width =
-        window.innerWidth;
-
-    canvas.height =
-        window.innerHeight;
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
 
     particles=[];
 
-    const count =
+    const count=
         Math.floor(
-            (
-                window.innerWidth *
-                window.innerHeight
-            ) / 5500
+            (window.innerWidth*window.innerHeight)/5500
         );
 
     for(let i=0;i<count;i++){
 
         particles.push({
 
-            x:
-                Math.random() *
-                canvas.width,
+            x:Math.random()*canvas.width,
 
-            y:
-                Math.random() *
-                canvas.height,
+            y:Math.random()*canvas.height,
 
-            r:
-                Math.random()*1.5+.3,
+            r:Math.random()*1.5+.3,
 
-            speed:
-                Math.random()*.35+.08,
+            speed:Math.random()*.35+.08,
 
-            drift:
-                (Math.random()-.5)*.25,
+            drift:(Math.random()-.5)*.25,
 
-            alpha:
-                Math.random()*.8+.2,
+            alpha:Math.random()*.8+.2,
 
-            twinkle:
-                Math.random()*.025+.008
-
+            twinkle:Math.random()*.025+.008
         });
-
     }
 }
 
@@ -759,39 +551,31 @@ function animateParticles(){
         canvas.height
     );
 
-    particles.forEach(p => {
+    particles.forEach(p=>{
 
-        p.y -= p.speed;
-        p.x += p.drift;
+        p.y-=p.speed;
+        p.x+=p.drift;
 
-        p.alpha +=
+        p.alpha+=
             (Math.random()-.5)*p.twinkle;
 
-        p.alpha =
+        p.alpha=
             Math.max(
                 .15,
                 Math.min(.95,p.alpha)
             );
 
-        if(p.y < -10){
+        if(p.y<-10){
 
-            p.y =
-                canvas.height + 10;
-
-            p.x =
-                Math.random()*canvas.width;
+            p.y=canvas.height+10;
+            p.x=Math.random()*canvas.width;
         }
 
-        if(p.x < -10){
+        if(p.x<-10)
+            p.x=canvas.width+10;
 
-            p.x =
-                canvas.width + 10;
-        }
-
-        if(p.x > canvas.width + 10){
-
-            p.x = -10;
-        }
+        if(p.x>canvas.width+10)
+            p.x=-10;
 
         ctx.globalAlpha=p.alpha;
 
@@ -808,24 +592,17 @@ function animateParticles(){
         ctx.fillStyle="#ffffff";
 
         ctx.fill();
-
     });
 
     ctx.globalAlpha=1;
 
-    requestAnimationFrame(
-        animateParticles
-    );
+    requestAnimationFrame(animateParticles);
 }
 
 
-window.addEventListener(
-    "resize",
-    resize
-);
+window.addEventListener("resize",resize);
 
 resize();
-
 animateParticles();
 
 </script>
