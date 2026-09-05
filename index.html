@@ -2,148 +2,122 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>For Panchami ❤️</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html,body{
     margin:0;
     width:100%;
-    min-height:100%;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#05020b;
-    color:#fff;
-    overflow-x:hidden;
+    height:100%;
+    overflow:hidden
 }
 
 body{
+    font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+    background:#05020b;
+    color:#fff;
     display:grid;
-    place-items:center;
-    min-height:100vh;
-    padding:20px;
+    place-items:center
 }
 
 canvas{
     position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    z-index:-3;
+    inset:0
 }
 
 .glow{
     position:fixed;
-    width:500px;
-    height:500px;
+    width:45vw;
+    height:45vw;
+    max-width:500px;
+    max-height:500px;
     border-radius:50%;
-    background:radial-gradient(
-        circle,
-        #ff267422 0%,
-        #ff26740d 35%,
-        transparent 70%
-    );
-    filter:blur(20px);
-    pointer-events:none;
-    z-index:-2;
+    background:radial-gradient(circle,#ff2f7d33,transparent 68%);
+    filter:blur(12px);
+    animation:g 8s ease-in-out infinite alternate
+}
+
+@keyframes g{
+    to{transform:translate(30vw,20vh)}
 }
 
 .card{
-    width:min(720px,100%);
-    min-height:520px;
-    padding:45px 28px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
     position:relative;
+    z-index:2;
+    width:min(92vw,650px);
+    text-align:center;
+    padding:32px 24px
 }
 
 .page{
     display:none;
-    width:100%;
-    animation:in .7s ease;
+    animation:in .7s ease
 }
 
 .page.show{
-    display:block;
+    display:block
 }
 
 @keyframes in{
     from{
         opacity:0;
-        transform:translateY(25px) scale(.97);
+        transform:translateY(22px)
     }
     to{
         opacity:1;
-        transform:translateY(0) scale(1);
+        transform:none
     }
 }
 
 .kicker{
-    color:#ff65a6;
-    font-size:13px;
+    font-size:12px;
     letter-spacing:4px;
     text-transform:uppercase;
-    margin-bottom:18px;
+    color:#ff9cc4;
+    margin-bottom:18px
 }
 
 h1{
-    margin:0 0 18px;
-    font-size:clamp(38px,9vw,72px);
-    line-height:1;
-    background:linear-gradient(
-        90deg,
-        #fff,
-        #ff65a6,
-        #fff
-    );
+    font-size:clamp(42px,11vw,82px);
+    line-height:.95;
+    margin:0 0 24px;
+    background:linear-gradient(90deg,#fff,#ff69a8,#fff);
+    background-size:200%;
     -webkit-background-clip:text;
-    background-clip:text;
     color:transparent;
+    animation:shine 3s linear infinite
+}
+
+@keyframes shine{
+    to{background-position:200%}
 }
 
 h2{
-    font-size:clamp(28px,7vw,50px);
-    margin:0 0 18px;
+    font-size:clamp(30px,7vw,55px);
+    line-height:1.1;
+    margin:0 0 24px
 }
 
 p{
-    color:#ddd;
-    font-size:17px;
+    font-size:18px;
     line-height:1.7;
-    margin:10px auto;
-    max-width:600px;
-}
-
-.big{
-    font-size:clamp(30px,7vw,52px);
-    line-height:1.2;
-    margin-bottom:16px;
-}
-
-.highlight{
-    color:#ff79ad;
-    font-weight:700;
+    color:#eadfe5
 }
 
 .heart{
-    font-size:65px;
-    margin-bottom:15px;
-    animation:heartBeat 1.4s infinite;
+    font-size:82px;
+    animation:beat 1.2s infinite;
+    margin-bottom:12px
 }
 
-@keyframes heartBeat{
-    0%,100%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.15);
-    }
+@keyframes beat{
+    50%{transform:scale(1.15)}
 }
+
+/* ORIGINAL GLASS + PINK HIGHLIGHTED BUTTONS */
 
 button{
     margin:26px 7px 0;
@@ -155,113 +129,81 @@ button{
     font-size:16px;
     cursor:pointer;
     backdrop-filter:blur(12px);
-    transition:.25s;
+    transition:.25s
 }
 
 button:hover{
     transform:scale(1.06);
-    background:#ff3d871f;
+    background:#ff3d871f
 }
-
-/* TOTALLY HIGHLIGHTED YES BUTTONS */
 
 .yes{
-    background:#ff2674 !important;
-    color:#fff !important;
-    border:2px solid #ff65a6 !important;
-    font-weight:800;
-    transform:scale(1.08);
-
-    box-shadow:
-        0 0 15px #ff2674,
-        0 0 35px #ff2674,
-        0 0 70px #ff2674,
-        0 0 110px #ff267466 !important;
-
-    animation:yesGlow 1.5s ease-in-out infinite alternate;
+    background:linear-gradient(135deg,#ff2674,#ff65a6);
+    border:0;
+    box-shadow:0 0 35px #ff267455
 }
 
-.yes:hover{
-    transform:scale(1.15);
-
-    box-shadow:
-        0 0 20px #ff2674,
-        0 0 50px #ff2674,
-        0 0 100px #ff2674 !important;
+.big{
+    font-size:clamp(28px,7vw,50px);
+    line-height:1.2;
+    margin-bottom:16px
 }
 
-@keyframes yesGlow{
-    from{
-        box-shadow:
-            0 0 15px #ff2674,
-            0 0 35px #ff2674,
-            0 0 70px #ff267466;
-    }
-
-    to{
-        box-shadow:
-            0 0 25px #ff2674,
-            0 0 55px #ff2674,
-            0 0 110px #ff267488;
-    }
-}
-
-.back-link{
-    margin-top:35px;
-    color:#ff65a6;
-    cursor:pointer;
-    font-weight:700;
-    letter-spacing:1px;
-    transition:.25s;
-}
-
-.back-link:hover{
-    color:#fff;
-    transform:scale(1.05);
+.highlight{
+    color:#ff79ad;
+    font-weight:700
 }
 
 #toast{
     position:fixed;
-    bottom:18px;
+    bottom:20px;
     left:50%;
     transform:translateX(-50%);
-    color:#ffffff88;
-    font-size:12px;
-    letter-spacing:1px;
+    z-index:9;
+    color:#ffffffaa;
+    font-size:12px
 }
 
 .fh{
     position:fixed;
+    z-index:8;
     pointer-events:none;
-    font-size:25px;
-    animation:floatHeart 4s linear forwards;
-    z-index:10;
+    animation:up 4s linear forwards
 }
 
-@keyframes floatHeart{
-    0%{
-        opacity:1;
-        transform:translateY(0) scale(.7) rotate(0deg);
+@keyframes up{
+    to{
+        transform:translateY(-110vh) rotate(30deg);
+        opacity:0
     }
+}
 
-    100%{
-        opacity:0;
-        transform:translateY(-100vh) scale(1.4) rotate(25deg);
-    }
+.back-link{
+    margin-top:30px;
+    font-size:13px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#ff9cc4;
+    cursor:pointer;
+    transition:.25s
+}
+
+.back-link:hover{
+    color:#fff;
+    text-shadow:0 0 20px #ff69a8
 }
 
 @media(max-width:500px){
     .card{
-        padding:35px 15px;
-        min-height:580px;
+        padding:25px 18px
     }
 
     p{
-        font-size:16px;
+        font-size:16px
     }
 
     button{
-        padding:13px 20px;
+        font-size:15px
     }
 }
 </style>
@@ -269,236 +211,245 @@ button:hover{
 
 <body>
 
-<canvas id="stars"></canvas>
+<canvas id="c"></canvas>
 <div class="glow"></div>
 
-<div class="card">
+<main class="card">
 
-    <!-- PAGE 1 -->
-    <section class="page show" id="p1">
-        <div class="kicker">A little something for you</div>
+<!-- PAGE 1 -->
+<section class="page show" id="p1">
+    <div class="kicker">A little something for you</div>
 
-        <h1>Panchami</h1>
+    <h1>Panchami.</h1>
 
-        <p>
-            There is something I've wanted to tell you.
-            So… please stay till the end. 👀
-        </p>
+    <p>
+        There is something I've wanted to tell you.<br>
+        So… please stay till the end. 👀
+    </p>
 
-        <button onclick="go(2)">
-            I promise ✨
-        </button>
-    </section>
+    <button onclick="go(2)">
+        I promise ✨
+    </button>
+</section>
 
 
-    <!-- PAGE 2 -->
-    <section class="page" id="p2">
+<!-- PAGE 2 -->
+<section class="page" id="p2">
 
-        <div class="heart">❤️</div>
+    <div class="heart">❤️</div>
 
-        <div class="kicker">Okay… here goes</div>
+    <div class="kicker">Okay… here goes</div>
 
-        <h2>I've been thinking.</h2>
+    <h1>I've been thinking.</h1>
 
-        <p>
-            Some people slowly become a really important part
-            of your day without you even noticing.
-        </p>
+    <p>
+        Some people slowly become a really important part
+        of your day without you even noticing.
+    </p>
 
-        <button onclick="go(3)">
-            Continue →
-        </button>
-    </section>
+    <button onclick="go(3)">
+        Continue →
+    </button>
+</section>
 
 
-    <!-- PAGE 3 -->
-    <section class="page" id="p3">
+<!-- PAGE 3 -->
+<section class="page" id="p3">
 
-        <div class="kicker">The honest part</div>
+    <div class="kicker">The honest part</div>
 
-        <h2>You became special.</h2>
+    <p>
+        Talking to you became something I genuinely
+        look forward to.
+        <br><br>
 
-        <p>
-            Talking to you became something I genuinely
-            look forward to.
-        </p>
+        You make ordinary moments feel a little better,
+        and somewhere along the way,
+        you became
+        <span class="highlight">really special to me.</span>
+    </p>
 
-        <p>
-            Somewhere along the way,
-            you became really special to me.
-        </p>
+    <button onclick="go(4)">
+        One last thing…
+    </button>
+</section>
 
-        <button onclick="go(4)">
-            One last thing…
-        </button>
-    </section>
 
+<!-- PAGE 4 -->
+<section class="page" id="p4">
 
-    <!-- PAGE 4 -->
-    <section class="page" id="p4">
+    <div class="kicker">Something I've never said</div>
 
-        <div class="kicker">Something I've never said</div>
+    <div class="heart">❤️</div>
 
-        <h2>You're my first crush.</h2>
+    <h2>You're my first crush.</h2>
 
-        <p>
-            I've never really done this before.
-        </p>
+    <p>
+        I've never really done this before.
+        You're the first person I've genuinely had a crush on,
+        and honestly, I didn't even know how to say it.
+        <br><br>
 
-        <p>
-            You're the first person I've genuinely had a crush on,
-            and honestly, I didn't even know how to say it.
-        </p>
+        Maybe that's why I overthought this so much.
+        But I wanted to be honest with you
+        instead of keeping it to myself.
+    </p>
 
-        <p>
-            Maybe that's why I overthought this so much.
-            But I wanted to be honest with you instead of
-            keeping it to myself.
-        </p>
+    <button onclick="go(5)">
+        Keep going
+    </button>
+</section>
 
-        <button onclick="go(5)">
-            Keep going →
-        </button>
-    </section>
 
+<!-- PAGE 5 -->
+<section class="page" id="p5">
 
-    <!-- PAGE 5 -->
-    <section class="page" id="p5">
+    <div class="kicker">So I'll just say it</div>
 
-        <div class="kicker">So yeah…</div>
+    <h1>I like you. ❤️</h1>
 
-        <h2 class="big">
-            I really, really like you.
-        </h2>
+    <p>
+        Not because I expect anything from you.
+        <br>
+        Just because I wanted you to know
+        how I honestly feel.
+        <br><br>
 
-        <p>
-            Panchami, you're my <span class="highlight">first crush</span>.
-        </p>
+        You're my first crush,
+        and I really, really like you.
+    </p>
 
-        <p>
-            And I just wanted you to know how I honestly feel.
-        </p>
+    <button onclick="go(6)">
+        The question 👀
+    </button>
+</section>
 
-        <button onclick="go(6)">
-            The question 👀
-        </button>
-    </section>
 
+<!-- PAGE 6 -->
+<section class="page" id="p6">
 
-    <!-- PAGE 6 -->
-    <section class="page" id="p6">
+    <div class="kicker">Panchami…</div>
 
-        <div class="kicker">Panchami…</div>
+    <div class="big">
+        Would you like to be in a relationship with me? ❤️
+    </div>
 
-        <h2 class="big">
-            Would you like to be<br>
-            in a relationship with me?
-        </h2>
+    <p>
+        No pressure. Take your time.<br>
+        Whatever your answer is, I'll respect it.
+    </p>
 
-        <p>
-            No pressure. Take your time.
-            Whatever your answer is, I'll respect it.
-        </p>
+    <button class="yes" onclick="yes()">
+        YES ❤️
+    </button>
 
-        <div>
-            <button class="yes" onclick="yes()">
-                YES ❤️
-            </button>
+    <button onclick="go(10)">
+        I need some time
+    </button>
+</section>
 
-            <button class="yes" onclick="yes()">
-                YES 😭❤️
-            </button>
-        </div>
 
-        <p style="margin-top:28px;color:#ffffff55;font-size:13px;">
-            Whatever you choose, thank you for hearing me out.
-        </p>
-    </section>
+<!-- PAGE 7 -->
+<section class="page" id="p7">
 
+    <div class="heart">💖</div>
 
-    <!-- PAGE 7 -->
-    <section class="page" id="p7">
+    <div class="kicker">Whatever happens</div>
 
-        <div class="heart">❤️</div>
+    <h1>Thank you.</h1>
 
-        <div class="kicker">Whatever happens</div>
+    <p>
+        I'm really glad I was brave enough
+        to tell you how I feel. 🥹❤️
+        <br><br>
 
-        <h2>Thank you.</h2>
+        No matter what,
+        I'm happy that I finally told you.
+    </p>
 
-        <p>
-            I'm really glad I was brave enough to tell you
-            how I feel. 🥹❤️
-        </p>
+    <button onclick="go(8)">
+        One more thing…
+    </button>
+</section>
 
-        <button onclick="go(8)">
-            There's more…
-        </button>
-    </section>
 
+<!-- PAGE 8 -->
+<section class="page" id="p8">
 
-    <!-- PAGE 8 -->
-    <section class="page" id="p8">
+    <div class="kicker">For real</div>
 
-        <div class="kicker">Just one thing</div>
+    <h2>I'm telling you this because...</h2>
 
-        <h2>I don't expect perfection.</h2>
+    <p>
+        I didn't want to keep pretending
+        that I don't feel something more.
+        <br><br>
 
-        <p>
-            I just wanted to be honest with you.
-        </p>
+        I value what we have.
+        I like talking to you.
+        I like having you around.
+        <br><br>
 
-        <p>
-            Whatever happens next,
-            I'm thankful for the moments we've already shared.
-        </p>
+        I just wanted to be honest with you.
+    </p>
 
-        <button onclick="go(9)">
-            One more page →
-        </button>
-    </section>
+    <button onclick="go(9)">
+        Continue
+    </button>
+</section>
 
 
-    <!-- PAGE 9 -->
-    <section class="page" id="p9">
+<!-- PAGE 9 -->
+<section class="page" id="p9">
 
-        <div class="kicker">Before you go</div>
+    <div class="kicker">No pressure</div>
 
-        <h2>Take your time.</h2>
+    <h2>This isn't the end.</h2>
 
-        <p>
-            You don't have to answer immediately.
-        </p>
+    <p>
+        It's just me being honest with you.
+        <br><br>
 
-        <p>
-            I meant every word on this little website.
-        </p>
+        Take your time.
+        Think about it.
+        And most importantly,
+        be honest with yourself.
+        <br><br>
 
-        <button onclick="go(10)">
-            The ending →
-        </button>
-    </section>
+        Whatever your answer is,
+        I'll respect it.
+    </p>
 
+    <button onclick="go(10)">
+        Almost there
+    </button>
+</section>
 
-    <!-- PAGE 10 -->
-    <section class="page" id="p10">
 
-        <div class="heart">❤️</div>
+<!-- PAGE 10 -->
+<section class="page" id="p10">
 
-        <div class="kicker">That's all I wanted to say</div>
+    <div class="heart">❤️</div>
 
-        <h2>Thank you for reading.</h2>
+    <div class="kicker">Finally</div>
 
-        <p>
-            No matter what,
-            I'm glad I told you.
-        </p>
+    <h1>Thank you.</h1>
 
-        <p class="back-link" onclick="history.back()">
-            THANK U
-        </p>
-    </section>
+    <p>
+        For reading all of this.
+        <br>
+        For being you.
+        <br><br>
 
-</div>
+        That's all I wanted to say.
+    </p>
+
+    <p class="back-link" onclick="history.back()">
+        THANK U
+    </p>
+</section>
+
+</main>
 
 <div id="toast">
     Made with courage ❤️
@@ -507,146 +458,119 @@ button:hover{
 
 <script>
 
+const pages=document.querySelectorAll('.page');
+
 function go(n){
-
-    document.querySelectorAll(".page").forEach(page=>{
-        page.classList.remove("show");
-    });
-
-    const next=document.getElementById("p"+n);
-
-    if(next){
-        next.classList.add("show");
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+    pages.forEach(p=>p.classList.remove('show'));
+    document.getElementById('p'+n).classList.add('show');
 }
 
+
+/* YES BUTTON */
 
 function yes(){
 
     go(7);
 
-    const hearts=[
-        "❤️",
-        "💖",
-        "💗",
-        "✨",
-        "💕"
-    ];
-
     for(let i=0;i<70;i++){
 
         setTimeout(()=>{
 
-            const heart=document.createElement("div");
+            let e=document.createElement('div');
 
-            heart.className="fh";
+            e.className='fh';
 
-            heart.innerText=
-                hearts[Math.floor(Math.random()*hearts.length)];
+            e.textContent=[
+                '❤️',
+                '💖',
+                '💗',
+                '✨',
+                '💕'
+            ][Math.floor(Math.random()*5)];
 
-            heart.style.left=
-                Math.random()*100+"vw";
+            e.style.left=Math.random()*100+'vw';
+            e.style.top='105vh';
 
-            heart.style.bottom="-30px";
+            e.style.fontSize=
+                15+Math.random()*28+'px';
 
-            heart.style.animationDuration=
-                (3+Math.random()*3)+"s";
+            e.style.animationDuration=
+                3+Math.random()*3+'s';
 
-            heart.style.fontSize=
-                (18+Math.random()*25)+"px";
-
-            document.body.appendChild(heart);
+            document.body.appendChild(e);
 
             setTimeout(()=>{
-                heart.remove();
-            },6000);
+                e.remove();
+            },7000);
 
-        },i*70);
+        },i*45);
     }
 }
 
 
 /* STAR BACKGROUND */
 
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
+const c=document.getElementById('c');
+const x=c.getContext('2d');
 
-let stars=[];
+let s=[];
 
 function resize(){
 
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerHeight;
+    c.width=innerWidth;
+    c.height=innerHeight;
 
-    stars=[];
-
-    const count=
-        Math.floor(
-            (window.innerWidth*window.innerHeight)/9000
-        );
-
-    for(let i=0;i<count;i++){
-
-        stars.push({
-            x:Math.random()*canvas.width,
-            y:Math.random()*canvas.height,
-            r:Math.random()*1.5+.3,
-            a:Math.random(),
-            s:Math.random()*.01+.002
-        });
-    }
+    s=Array.from(
+        {length:130},
+        ()=>({
+            x:Math.random()*c.width,
+            y:Math.random()*c.height,
+            r:Math.random()*1.4,
+            v:.1+Math.random()*.25
+        })
+    );
 }
 
-function animateStars(){
+function stars(){
 
-    ctx.clearRect(
+    x.clearRect(
         0,
         0,
-        canvas.width,
-        canvas.height
+        c.width,
+        c.height
     );
 
-    stars.forEach(star=>{
+    x.fillStyle='#ffffffbb';
 
-        star.a+=star.s;
+    s.forEach(a=>{
 
-        if(star.a>1 || star.a<0){
-            star.s*=-1;
-        }
+        x.beginPath();
 
-        ctx.globalAlpha=
-            Math.max(.1,Math.min(1,star.a));
-
-        ctx.beginPath();
-
-        ctx.arc(
-            star.x,
-            star.y,
-            star.r,
+        x.arc(
+            a.x,
+            a.y,
+            a.r,
             0,
-            Math.PI*2
+            7
         );
 
-        ctx.fillStyle="#ffffff";
+        x.fill();
 
-        ctx.fill();
+        a.y-=a.v;
+
+        if(a.y<0)
+            a.y=c.height;
     });
 
-    requestAnimationFrame(animateStars);
+    requestAnimationFrame(stars);
 }
 
-window.addEventListener("resize",resize);
+addEventListener('resize',resize);
 
 resize();
-animateStars();
+stars();
 
 </script>
 
 </body>
 </html>
-
