@@ -26,6 +26,7 @@ body{
     overflow-x:hidden;
 }
 
+/* WHITE FLYING PARTICLES */
 canvas{
     position:fixed;
     inset:0;
@@ -165,10 +166,11 @@ button:hover{
     background:#ffffff17;
 }
 
-/* MAIN YES BUTTON */
+/* FULLY HIGHLIGHTED YES */
 
 .yes{
     position:relative;
+
     background:linear-gradient(
         135deg,
         #ff1268,
@@ -222,8 +224,6 @@ button:hover{
     }
 }
 
-/* TAKE YOUR TIME */
-
 .take-time{
     opacity:.8;
     border-color:#ffffff30;
@@ -232,8 +232,6 @@ button:hover{
 .take-time:hover{
     opacity:1;
 }
-
-/* END LINK */
 
 .back-link{
     margin-top:35px;
@@ -249,7 +247,7 @@ button:hover{
     transform:scale(1.05);
 }
 
-/* FLOATING HEARTS */
+/* FLOATING HEARTS AFTER YES */
 
 .fh{
     position:fixed;
@@ -306,11 +304,13 @@ button:hover{
 <body>
 
 <canvas id="stars"></canvas>
+
 <div class="glow"></div>
 
 <div class="card">
 
 <!-- PAGE 1 -->
+
 <section class="page show" id="p1">
 
     <div class="kicker">
@@ -332,15 +332,20 @@ button:hover{
 
 
 <!-- PAGE 2 -->
+
 <section class="page" id="p2">
 
-    <div class="heart">❤️</div>
+    <div class="heart">
+        ❤️
+    </div>
 
     <div class="kicker">
         Okay… here goes
     </div>
 
-    <h2>I've been thinking.</h2>
+    <h2>
+        I've been thinking.
+    </h2>
 
     <p>
         Some people slowly become a really important
@@ -355,13 +360,16 @@ button:hover{
 
 
 <!-- PAGE 3 -->
+
 <section class="page" id="p3">
 
     <div class="kicker">
         The honest part
     </div>
 
-    <h2>You became special.</h2>
+    <h2>
+        You became special.
+    </h2>
 
     <p>
         Talking to you became something I genuinely
@@ -381,13 +389,16 @@ button:hover{
 
 
 <!-- PAGE 4 -->
+
 <section class="page" id="p4">
 
     <div class="kicker">
         Something I've never said
     </div>
 
-    <h2>You're my first crush.</h2>
+    <h2>
+        You're my first crush.
+    </h2>
 
     <p>
         I've never really done this before.
@@ -412,6 +423,7 @@ button:hover{
 
 
 <!-- PAGE 5 -->
+
 <section class="page" id="p5">
 
     <div class="kicker">
@@ -424,7 +436,9 @@ button:hover{
 
     <p>
         Panchami, you're my
-        <span class="highlight">first crush</span>.
+        <span class="highlight">
+            first crush
+        </span>.
     </p>
 
     <p>
@@ -440,6 +454,7 @@ button:hover{
 
 
 <!-- PAGE 6 -->
+
 <section class="page" id="p6">
 
     <div class="kicker">
@@ -472,9 +487,12 @@ button:hover{
 
 
 <!-- PAGE 7 : YES -->
+
 <section class="page" id="p7">
 
-    <div class="heart">❤️</div>
+    <div class="heart">
+        ❤️
+    </div>
 
     <div class="kicker">
         You said yes
@@ -497,9 +515,12 @@ button:hover{
 
 
 <!-- PAGE 8 : TAKE YOUR TIME -->
+
 <section class="page" id="p8">
 
-    <div class="heart">❤️</div>
+    <div class="heart">
+        ❤️
+    </div>
 
     <div class="kicker">
         No rush
@@ -527,6 +548,7 @@ button:hover{
 
 
 <!-- PAGE 9 -->
+
 <section class="page" id="p9">
 
     <div class="kicker">
@@ -554,9 +576,12 @@ button:hover{
 
 
 <!-- PAGE 10 -->
+
 <section class="page" id="p10">
 
-    <div class="heart">❤️</div>
+    <div class="heart">
+        ❤️
+    </div>
 
     <div class="kicker">
         That's all I wanted to say
@@ -571,13 +596,17 @@ button:hover{
         I'm glad I told you.
     </p>
 
-    <p class="back-link" onclick="history.back()">
+    <p
+        class="back-link"
+        onclick="history.back()"
+    >
         THANK U
     </p>
 
 </section>
 
 </div>
+
 
 <div id="toast">
     Made with courage ❤️
@@ -586,7 +615,7 @@ button:hover{
 
 <script>
 
-/* PAGE SWITCHING */
+/* PAGE NAVIGATION */
 
 function go(n){
 
@@ -660,7 +689,7 @@ function yes(){
 }
 
 
-/* STAR BACKGROUND */
+/* WHITE FLYING PARTICLES */
 
 const canvas =
     document.getElementById("stars");
@@ -668,42 +697,60 @@ const canvas =
 const ctx =
     canvas.getContext("2d");
 
-let stars=[];
+let particles=[];
 
 function resize(){
 
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerHeight;
+    canvas.width =
+        window.innerWidth;
 
-    stars=[];
+    canvas.height =
+        window.innerHeight;
+
+    particles=[];
 
     const count =
         Math.floor(
             (
                 window.innerWidth *
                 window.innerHeight
-            ) / 9000
+            ) / 5500
         );
 
     for(let i=0;i<count;i++){
 
-        stars.push({
+        particles.push({
 
-            x:Math.random()*canvas.width,
+            x:
+                Math.random() *
+                canvas.width,
 
-            y:Math.random()*canvas.height,
+            y:
+                Math.random() *
+                canvas.height,
 
-            r:Math.random()*1.5+.3,
+            r:
+                Math.random()*1.5+.3,
 
-            a:Math.random(),
+            speed:
+                Math.random()*.35+.08,
 
-            s:Math.random()*.01+.002
+            drift:
+                (Math.random()-.5)*.25,
+
+            alpha:
+                Math.random()*.8+.2,
+
+            twinkle:
+                Math.random()*.025+.008
 
         });
+
     }
 }
 
-function animateStars(){
+
+function animateParticles(){
 
     ctx.clearRect(
         0,
@@ -712,38 +759,65 @@ function animateStars(){
         canvas.height
     );
 
-    stars.forEach(star => {
+    particles.forEach(p => {
 
-        star.a += star.s;
+        p.y -= p.speed;
+        p.x += p.drift;
 
-        if(star.a>1 || star.a<0){
-            star.s *= -1;
+        p.alpha +=
+            (Math.random()-.5)*p.twinkle;
+
+        p.alpha =
+            Math.max(
+                .15,
+                Math.min(.95,p.alpha)
+            );
+
+        if(p.y < -10){
+
+            p.y =
+                canvas.height + 10;
+
+            p.x =
+                Math.random()*canvas.width;
         }
 
-        ctx.globalAlpha =
-            Math.max(
-                .1,
-                Math.min(1,star.a)
-            );
+        if(p.x < -10){
+
+            p.x =
+                canvas.width + 10;
+        }
+
+        if(p.x > canvas.width + 10){
+
+            p.x = -10;
+        }
+
+        ctx.globalAlpha=p.alpha;
 
         ctx.beginPath();
 
         ctx.arc(
-            star.x,
-            star.y,
-            star.r,
+            p.x,
+            p.y,
+            p.r,
             0,
             Math.PI*2
         );
 
-        ctx.fillStyle="#fff";
+        ctx.fillStyle="#ffffff";
 
         ctx.fill();
 
     });
 
-    requestAnimationFrame(animateStars);
+    ctx.globalAlpha=1;
+
+    requestAnimationFrame(
+        animateParticles
+    );
 }
+
 
 window.addEventListener(
     "resize",
@@ -751,7 +825,8 @@ window.addEventListener(
 );
 
 resize();
-animateStars();
+
+animateParticles();
 
 </script>
 
