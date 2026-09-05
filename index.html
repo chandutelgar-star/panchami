@@ -7,237 +7,261 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    width:100%;
+    min-height:100%;
     font-family:Arial,Helvetica,sans-serif;
+    background:#05020b;
+    color:#fff;
+    overflow-x:hidden;
 }
 
 body{
-    background:radial-gradient(circle at center,#24102e 0%,#09000f 55%,#000 100%);
-    color:white;
-    overflow:hidden;
+    display:grid;
+    place-items:center;
+    min-height:100vh;
+    padding:20px;
 }
 
 canvas{
     position:fixed;
     inset:0;
+    width:100%;
+    height:100%;
+    z-index:-3;
+}
+
+.glow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:radial-gradient(
+        circle,
+        #ff267422 0%,
+        #ff26740d 35%,
+        transparent 70%
+    );
+    filter:blur(20px);
+    pointer-events:none;
     z-index:-2;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-        radial-gradient(circle at 20% 30%,rgba(255,0,128,.16),transparent 25%),
-        radial-gradient(circle at 80% 70%,rgba(140,0,255,.15),transparent 25%);
-    pointer-events:none;
-    z-index:-1;
-}
-
-.page{
-    position:absolute;
-    inset:0;
+.card{
+    width:min(720px,100%);
+    min-height:520px;
+    padding:45px 28px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:25px;
-    opacity:0;
-    pointer-events:none;
-    transform:scale(1.05);
-    transition:opacity 1s ease,transform 1s ease;
+    position:relative;
 }
 
-.page.active{
-    opacity:1;
-    pointer-events:auto;
-    transform:scale(1);
+.page{
+    display:none;
+    width:100%;
+    animation:in .7s ease;
 }
 
-.content{
-    width:min(700px,100%);
+.page.show{
+    display:block;
 }
 
-.small{
-    font-size:14px;
+@keyframes in{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.kicker{
+    color:#ff65a6;
+    font-size:13px;
     letter-spacing:4px;
     text-transform:uppercase;
-    color:#ff9bd8;
-    margin-bottom:25px;
+    margin-bottom:18px;
 }
 
 h1{
-    font-size:clamp(42px,10vw,90px);
-    margin-bottom:25px;
-    background:linear-gradient(90deg,#fff,#ff73c8,#c77dff,#fff);
-    background-size:300%;
+    margin:0 0 18px;
+    font-size:clamp(38px,9vw,72px);
+    line-height:1;
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #ff65a6,
+        #fff
+    );
     -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:gradient 5s infinite linear;
-    text-shadow:0 0 35px rgba(255,70,180,.35);
+    background-clip:text;
+    color:transparent;
 }
 
 h2{
-    font-size:clamp(30px,7vw,60px);
-    margin-bottom:25px;
+    font-size:clamp(28px,7vw,50px);
+    margin:0 0 18px;
 }
 
 p{
-    font-size:clamp(17px,4vw,23px);
-    line-height:1.8;
-    color:#f3e8f5;
+    color:#ddd;
+    font-size:17px;
+    line-height:1.7;
+    margin:10px auto;
+    max-width:600px;
+}
+
+.big{
+    font-size:clamp(30px,7vw,52px);
+    line-height:1.2;
+    margin-bottom:16px;
 }
 
 .highlight{
-    color:#ff72c8;
-    text-shadow:0 0 20px rgba(255,60,180,.6);
+    color:#ff79ad;
+    font-weight:700;
+}
+
+.heart{
+    font-size:65px;
+    margin-bottom:15px;
+    animation:heartBeat 1.4s infinite;
+}
+
+@keyframes heartBeat{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.15);
+    }
 }
 
 button{
-    margin-top:35px;
-    padding:15px 34px;
-    border:none;
-    border-radius:40px;
-    background:linear-gradient(90deg,#ff3b9d,#9d4edd);
-    color:white;
-    font-size:17px;
+    margin:26px 7px 0;
+    border:1px solid #ffffff35;
+    border-radius:999px;
+    padding:14px 24px;
+    background:#ffffff12;
+    color:#fff;
+    font-size:16px;
     cursor:pointer;
-    box-shadow:
-        0 0 15px rgba(255,50,160,.5),
-        0 0 40px rgba(150,50,255,.25);
-    transition:.3s;
+    backdrop-filter:blur(12px);
+    transition:.25s;
 }
 
 button:hover{
-    transform:scale(1.07);
-    box-shadow:
-        0 0 25px rgba(255,50,160,.8),
-        0 0 60px rgba(150,50,255,.5);
+    transform:scale(1.06);
+    background:#ff3d871f;
 }
 
-button:active{
-    transform:scale(.96);
-}
-
-.typing{
-    min-height:35px;
-}
-
-.big-heart{
-    font-size:85px;
-    margin-bottom:20px;
-    animation:pulse 1.8s infinite;
-}
-
-.options{
-    display:flex;
-    gap:18px;
-    justify-content:center;
-    flex-wrap:wrap;
-}
+/* TOTALLY HIGHLIGHTED YES BUTTONS */
 
 .yes{
-    background:linear-gradient(90deg,#ff168f,#ff4fb5);
+    background:#ff2674 !important;
+    color:#fff !important;
+    border:2px solid #ff65a6 !important;
+    font-weight:800;
+    transform:scale(1.08);
+
+    box-shadow:
+        0 0 15px #ff2674,
+        0 0 35px #ff2674,
+        0 0 70px #ff2674,
+        0 0 110px #ff267466 !important;
+
+    animation:yesGlow 1.5s ease-in-out infinite alternate;
 }
 
-.time{
-    background:linear-gradient(90deg,#6527d9,#9146ff);
+.yes:hover{
+    transform:scale(1.15);
+
+    box-shadow:
+        0 0 20px #ff2674,
+        0 0 50px #ff2674,
+        0 0 100px #ff2674 !important;
+}
+
+@keyframes yesGlow{
+    from{
+        box-shadow:
+            0 0 15px #ff2674,
+            0 0 35px #ff2674,
+            0 0 70px #ff267466;
+    }
+
+    to{
+        box-shadow:
+            0 0 25px #ff2674,
+            0 0 55px #ff2674,
+            0 0 110px #ff267488;
+    }
 }
 
 .back-link{
     margin-top:35px;
-    font-size:14px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    color:#ff9bd8;
+    color:#ff65a6;
     cursor:pointer;
-    transition:.3s;
+    font-weight:700;
+    letter-spacing:1px;
+    transition:.25s;
 }
 
 .back-link:hover{
-    color:white;
-    text-shadow:0 0 20px #ff4db8;
+    color:#fff;
+    transform:scale(1.05);
 }
 
-.quote{
-    margin-top:25px;
-    color:#bca8c3;
-    font-size:15px;
+#toast{
+    position:fixed;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#ffffff88;
+    font-size:12px;
     letter-spacing:1px;
 }
 
-.flash{
+.fh{
     position:fixed;
-    inset:0;
-    background:white;
-    opacity:0;
     pointer-events:none;
-    z-index:20;
-}
-
-.flash.active{
-    animation:flash .8s ease;
-}
-
-.heart{
-    position:fixed;
     font-size:25px;
-    pointer-events:none;
-    animation:floatHeart 3s linear forwards;
-    z-index:15;
-}
-
-@keyframes gradient{
-    0%{background-position:0%}
-    100%{background-position:300%}
-}
-
-@keyframes pulse{
-    0%,100%{
-        transform:scale(1);
-        filter:drop-shadow(0 0 10px rgba(255,60,170,.5));
-    }
-    50%{
-        transform:scale(1.12);
-        filter:drop-shadow(0 0 30px rgba(255,60,170,.9));
-    }
-}
-
-@keyframes flash{
-    0%{opacity:0}
-    30%{opacity:.8}
-    100%{opacity:0}
+    animation:floatHeart 4s linear forwards;
+    z-index:10;
 }
 
 @keyframes floatHeart{
     0%{
-        transform:translateY(0) scale(.7) rotate(0deg);
         opacity:1;
+        transform:translateY(0) scale(.7) rotate(0deg);
     }
+
     100%{
-        transform:translateY(-100vh) scale(1.4) rotate(30deg);
         opacity:0;
+        transform:translateY(-100vh) scale(1.4) rotate(25deg);
     }
 }
 
 @media(max-width:500px){
-    h1{
-        font-size:52px;
-    }
-
-    h2{
-        font-size:35px;
+    .card{
+        padding:35px 15px;
+        min-height:580px;
     }
 
     p{
-        font-size:17px;
+        font-size:16px;
     }
 
     button{
-        width:100%;
-        max-width:280px;
+        padding:13px 20px;
     }
 }
 </style>
@@ -246,297 +270,305 @@ button:active{
 <body>
 
 <canvas id="stars"></canvas>
-<div class="flash" id="flash"></div>
+<div class="glow"></div>
 
-<!-- PAGE 1 -->
-<section class="page active" id="p1">
-    <div class="content">
-        <div class="small">A little something</div>
+<div class="card">
 
-        <h1>Panchami.</h1>
+    <!-- PAGE 1 -->
+    <section class="page show" id="p1">
+        <div class="kicker">A little something for you</div>
 
-        <p class="typing" id="typing1"></p>
-
-        <button onclick="go(2)">I promise</button>
-    </div>
-</section>
-
-
-<!-- PAGE 2 -->
-<section class="page" id="p2">
-    <div class="content">
-        <div class="small">Then...</div>
-
-        <h2>Here we go.</h2>
+        <h1>Panchami</h1>
 
         <p>
-            I've been thinking about whether I should say this
-            or just keep it to myself.
+            There is something I've wanted to tell you.
+            So… please stay till the end. 👀
         </p>
 
-        <button onclick="go(3)">Keep going</button>
-    </div>
-</section>
+        <button onclick="go(2)">
+            I promise ✨
+        </button>
+    </section>
 
 
-<!-- PAGE 3 -->
-<section class="page" id="p3">
-    <div class="content">
-        <div class="small">Honestly</div>
+    <!-- PAGE 2 -->
+    <section class="page" id="p2">
 
-        <h2>There's something I wanted to tell you.</h2>
+        <div class="heart">❤️</div>
+
+        <div class="kicker">Okay… here goes</div>
+
+        <h2>I've been thinking.</h2>
+
+        <p>
+            Some people slowly become a really important part
+            of your day without you even noticing.
+        </p>
+
+        <button onclick="go(3)">
+            Continue →
+        </button>
+    </section>
+
+
+    <!-- PAGE 3 -->
+    <section class="page" id="p3">
+
+        <div class="kicker">The honest part</div>
+
+        <h2>You became special.</h2>
+
+        <p>
+            Talking to you became something I genuinely
+            look forward to.
+        </p>
 
         <p>
             Somewhere along the way,
-            you became someone I genuinely look forward to talking to.
-            Your presence started meaning more to me than I expected.
+            you became really special to me.
         </p>
 
-        <button onclick="go(4)">Next</button>
-    </div>
-</section>
+        <button onclick="go(4)">
+            One last thing…
+        </button>
+    </section>
 
 
-<!-- PAGE 4 -->
-<section class="page" id="p4">
-    <div class="content">
-        <div class="small">Something I've never said</div>
+    <!-- PAGE 4 -->
+    <section class="page" id="p4">
 
-        <div class="big-heart">❤️</div>
+        <div class="kicker">Something I've never said</div>
 
         <h2>You're my first crush.</h2>
 
         <p>
             I've never really done this before.
-            You're the first person I've genuinely had a crush on,
-            and honestly, I didn't even know how to say it.
-            <br><br>
-            Maybe that's why I overthought this so much.
-            But I wanted to be honest with you
-            instead of keeping it to myself.
         </p>
-
-        <button onclick="go(5)">Keep going</button>
-    </div>
-</section>
-
-
-<!-- PAGE 5 -->
-<section class="page" id="p5">
-    <div class="content">
-        <div class="small">So yeah...</div>
-
-        <h1>I like you.</h1>
 
         <p>
-            Not as a joke.<br>
-            Not just randomly.<br>
-            I actually mean it.
-            <br><br>
-            You're my first crush,
-            and I really, really like you.
+            You're the first person I've genuinely had a crush on,
+            and honestly, I didn't even know how to say it.
         </p>
 
-        <button onclick="go(6)">One more thing</button>
-    </div>
-</section>
+        <p>
+            Maybe that's why I overthought this so much.
+            But I wanted to be honest with you instead of
+            keeping it to myself.
+        </p>
+
+        <button onclick="go(5)">
+            Keep going →
+        </button>
+    </section>
 
 
-<!-- PAGE 6 -->
-<section class="page" id="p6">
-    <div class="content">
-        <div class="small">The question</div>
+    <!-- PAGE 5 -->
+    <section class="page" id="p5">
 
-        <h2>Would you like to be in a relationship with me?</h2>
+        <div class="kicker">So yeah…</div>
 
-        <p class="quote">
+        <h2 class="big">
+            I really, really like you.
+        </h2>
+
+        <p>
+            Panchami, you're my <span class="highlight">first crush</span>.
+        </p>
+
+        <p>
+            And I just wanted you to know how I honestly feel.
+        </p>
+
+        <button onclick="go(6)">
+            The question 👀
+        </button>
+    </section>
+
+
+    <!-- PAGE 6 -->
+    <section class="page" id="p6">
+
+        <div class="kicker">Panchami…</div>
+
+        <h2 class="big">
+            Would you like to be<br>
+            in a relationship with me?
+        </h2>
+
+        <p>
+            No pressure. Take your time.
+            Whatever your answer is, I'll respect it.
+        </p>
+
+        <div>
+            <button class="yes" onclick="yes()">
+                YES ❤️
+            </button>
+
+            <button class="yes" onclick="yes()">
+                YES 😭❤️
+            </button>
+        </div>
+
+        <p style="margin-top:28px;color:#ffffff55;font-size:13px;">
+            Whatever you choose, thank you for hearing me out.
+        </p>
+    </section>
+
+
+    <!-- PAGE 7 -->
+    <section class="page" id="p7">
+
+        <div class="heart">❤️</div>
+
+        <div class="kicker">Whatever happens</div>
+
+        <h2>Thank you.</h2>
+
+        <p>
+            I'm really glad I was brave enough to tell you
+            how I feel. 🥹❤️
+        </p>
+
+        <button onclick="go(8)">
+            There's more…
+        </button>
+    </section>
+
+
+    <!-- PAGE 8 -->
+    <section class="page" id="p8">
+
+        <div class="kicker">Just one thing</div>
+
+        <h2>I don't expect perfection.</h2>
+
+        <p>
+            I just wanted to be honest with you.
+        </p>
+
+        <p>
+            Whatever happens next,
+            I'm thankful for the moments we've already shared.
+        </p>
+
+        <button onclick="go(9)">
+            One more page →
+        </button>
+    </section>
+
+
+    <!-- PAGE 9 -->
+    <section class="page" id="p9">
+
+        <div class="kicker">Before you go</div>
+
+        <h2>Take your time.</h2>
+
+        <p>
             You don't have to answer immediately.
         </p>
 
-        <div class="options">
-            <button class="yes" onclick="yes()">YES ❤️</button>
-            <button class="time" onclick="go(10)">
-                I need some time
-            </button>
-        </div>
-    </div>
-</section>
-
-
-<!-- PAGE 7 -->
-<section class="page" id="p7">
-    <div class="content">
-        <div class="small">One more thing...</div>
-
-        <h2>Before you answer.</h2>
-
         <p>
-            I just want you to know that I'm not expecting
-            some perfect response.
-            <br><br>
-            I value what we have.
-            I like talking to you.
-            I like having you around.
+            I meant every word on this little website.
         </p>
 
-        <button onclick="go(8)">Read this</button>
-    </div>
-</section>
+        <button onclick="go(10)">
+            The ending →
+        </button>
+    </section>
 
 
-<!-- PAGE 8 -->
-<section class="page" id="p8">
-    <div class="content">
-        <div class="small">For real</div>
+    <!-- PAGE 10 -->
+    <section class="page" id="p10">
 
-        <h2>I'm telling you this because...</h2>
+        <div class="heart">❤️</div>
 
-        <p>
-            I didn't want to keep pretending
-            that I don't feel something more.
-            <br><br>
-            I just wanted to be honest with you.
-            And whatever you decide,
-            I genuinely respect you and your feelings.
-        </p>
+        <div class="kicker">That's all I wanted to say</div>
 
-        <button onclick="go(9)">Continue</button>
-    </div>
-</section>
-
-
-<!-- PAGE 9 -->
-<section class="page" id="p9">
-    <div class="content">
-        <div class="small">No pressure</div>
-
-        <h2>This isn't the end.</h2>
+        <h2>Thank you for reading.</h2>
 
         <p>
-            It's just me being honest with you.
-            <br><br>
-            Take your time.
-            Think about it.
-            And most importantly,
-            be honest with yourself.
-        </p>
-
-        <button onclick="go(10)">Almost there</button>
-    </div>
-</section>
-
-
-<!-- PAGE 10 -->
-<section class="page" id="p10">
-    <div class="content">
-        <div class="small">Finally</div>
-
-        <div class="big-heart">❤️</div>
-
-        <h1>Thank you.</h1>
-
-        <p>
-            For reading all of this.
-            <br>
-            For being you.
-            <br><br>
-            That's all I wanted to say.
+            No matter what,
+            I'm glad I told you.
         </p>
 
         <p class="back-link" onclick="history.back()">
             THANK U
         </p>
-    </div>
-</section>
+    </section>
+
+</div>
+
+<div id="toast">
+    Made with courage ❤️
+</div>
 
 
 <script>
 
-/* PAGE NAVIGATION */
-
-function go(number){
+function go(n){
 
     document.querySelectorAll(".page").forEach(page=>{
-        page.classList.remove("active");
+        page.classList.remove("show");
     });
 
-    setTimeout(()=>{
-        document.getElementById("p"+number).classList.add("active");
-    },100);
+    const next=document.getElementById("p"+n);
+
+    if(next){
+        next.classList.add("show");
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
 
-/* YES BUTTON */
-
 function yes(){
 
-    const flash=document.getElementById("flash");
+    go(7);
 
-    flash.classList.add("active");
+    const hearts=[
+        "❤️",
+        "💖",
+        "💗",
+        "✨",
+        "💕"
+    ];
 
-    setTimeout(()=>{
-        flash.classList.remove("active");
-        go(7);
-    },500);
-
-    for(let i=0;i<35;i++){
+    for(let i=0;i<70;i++){
 
         setTimeout(()=>{
 
             const heart=document.createElement("div");
 
-            heart.className="heart";
+            heart.className="fh";
 
-            const hearts=[
-                "❤️",
-                "💖",
-                "💕",
-                "💗",
-                "💓",
-                "💞",
-                "💘"
-            ];
-
-            heart.innerHTML=
+            heart.innerText=
                 hearts[Math.floor(Math.random()*hearts.length)];
 
-            heart.style.left=Math.random()*100+"vw";
+            heart.style.left=
+                Math.random()*100+"vw";
+
             heart.style.bottom="-30px";
-            heart.style.fontSize=(18+Math.random()*30)+"px";
+
             heart.style.animationDuration=
-                (2+Math.random()*2)+"s";
+                (3+Math.random()*3)+"s";
+
+            heart.style.fontSize=
+                (18+Math.random()*25)+"px";
 
             document.body.appendChild(heart);
 
             setTimeout(()=>{
                 heart.remove();
-            },4000);
+            },6000);
 
-        },i*80);
+        },i*70);
     }
 }
-
-
-/* TYPING EFFECT */
-
-const text="Please stay till the end... 👀";
-const typing=document.getElementById("typing1");
-
-let index=0;
-
-function type(){
-
-    if(index<text.length){
-
-        typing.innerHTML+=text.charAt(index);
-
-        index++;
-
-        setTimeout(type,65);
-    }
-}
-
-setTimeout(type,700);
 
 
 /* STAR BACKGROUND */
@@ -553,16 +585,20 @@ function resize(){
 
     stars=[];
 
-    for(let i=0;i<180;i++){
+    const count=
+        Math.floor(
+            (window.innerWidth*window.innerHeight)/9000
+        );
+
+    for(let i=0;i<count;i++){
 
         stars.push({
             x:Math.random()*canvas.width,
             y:Math.random()*canvas.height,
-            r:Math.random()*1.7+.2,
+            r:Math.random()*1.5+.3,
             a:Math.random(),
-            speed:Math.random()*.01+.002
+            s:Math.random()*.01+.002
         });
-
     }
 }
 
@@ -577,11 +613,14 @@ function animateStars(){
 
     stars.forEach(star=>{
 
-        star.a+=star.speed;
+        star.a+=star.s;
 
-        const opacity=
-            .25+
-            Math.abs(Math.sin(star.a))*.75;
+        if(star.a>1 || star.a<0){
+            star.s*=-1;
+        }
+
+        ctx.globalAlpha=
+            Math.max(.1,Math.min(1,star.a));
 
         ctx.beginPath();
 
@@ -593,11 +632,9 @@ function animateStars(){
             Math.PI*2
         );
 
-        ctx.fillStyle=
-            `rgba(255,255,255,${opacity})`;
+        ctx.fillStyle="#ffffff";
 
         ctx.fill();
-
     });
 
     requestAnimationFrame(animateStars);
@@ -612,3 +649,4 @@ animateStars();
 
 </body>
 </html>
+
